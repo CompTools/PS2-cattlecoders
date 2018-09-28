@@ -1,0 +1,10 @@
+
+# 3. Within a function, prints a list of all unique airport codes contained in the dataset. (*3 points*)
+
+awk '{print $3"\n"$7}' flightsTotal | sort|uniq > UniqueAirportCodes
+wc -l UniqueAirportCodes
+392 UniqueAirportCodes
+
+# Print a column with the Airport codes ($3 and $7) in a newline (\n), then sort and just unique (uniq) values
+
+# ANSWER: There are 392 unique airport codes.
