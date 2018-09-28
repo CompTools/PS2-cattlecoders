@@ -1,0 +1,14 @@
+
+
+#4. Within a function lists the cities in Florida that have airports in the dataset. (*2 points*)
+
+
+awk '$6 == "\"FL\""' flightsTotal| awk '{print $4}'|awk '$10 == "\"FL\""' flightsTotal | awk '{print $8}' | sort | uniq > FloridaAirports
+
+wc -l FloridaAirports
+11 FloridaAirports
+
+## To find in column "ORIGIN_STATE_ABR" ($6) "FL" then print column "ORIGIN_CITY_NAME" ($4), and column "DEST_STATE_ABR" ($10) equal "FL" then print column "DEST_CITY_NAME", sort and unique values (uniq) 
+
+
+#ANSWER: There are 11 cities in Florida that have airports in the dataset.
