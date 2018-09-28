@@ -4,10 +4,9 @@
 
 GNV to: | Total flights | Total flights delayed (>15min) | Total flights delayed due to Weather
 --------|---------------|--------------------------------|--------------------------------------
-ATL     | 1476          |  322                           | 15
-CLT     | 476           |  135                           |  3
-MIA     | 205           |  42                            |  0
-
+ATL     |     1476      |              322               |                  15
+CLT     |      476      |              135               |                  3
+MIA     |      205      |               42               |                  0
 
 
 ############################# 2.1 GNV to ATL:  ###########################################################
@@ -24,14 +23,13 @@ wc -l FlightsGNVtoATL
 
 # Total flights delayed (>15min)
 awk '$13 == 1.00 || $16 == 1.00 {print $0}' FlightsGNVtoATL | wc -l
-322
+# Output: 322
 # Departure Delay ($13) or (||) Arrival Delay ($16), then print all columns ($0)
 
 # Total flights delayed due to Weather
 awk '$13 == 1.00 || $16 == 1.00 ' FlightsGNVtoATL| awk '$24 > 0.00' |awk '{print $0}'|wc -l
-15
+# Output: 15
 # Departure Delay ($13) or (||) Arrival Delay ($16), and the delayed is due to Weather ($24), then print all columns ($0)
-
 
 ############################# 2.2 GNV to CLT:  ###########################################################
 
@@ -39,29 +37,30 @@ tr ',' '\t' < flights.May2017-Apr2018.csv | sed 1d | awk '$3 == "\"GNV\"" &&  $7
 
 # Total flights
 wc -l FlightsGNVtoCLT
-476 FlightsGNVtoCLT
+# Output: 476 FlightsGNVtoCLT
 
 # Total flights delayed (>15min)
 awk '$13 == 1.00 || $16 == 1.00 {print $0}' FlightsGNVtoCLT | wc -l
-135
+# Output: 135
 
 # Total flights delayed due to Weather
 awk '$13 == 1.00 || $16 == 1.00 ' FlightsGNVtoCLT| awk '$24 > 0.00' |awk '{print $0}'|wc -l
-3
+#Output: 3
+
 ############################## 2.3 GNV to MIA:  ###########################################################
 
 tr ',' '\t' < flights.May2017-Apr2018.csv | sed 1d | awk '$3 == "\"GNV\"" &&  $7 == "\"MIA\"" {print $0}' > FlightsGNVtoMIA
 
 # Total flights
 wc -l FlightsGNVtoMIA
-205 FlightsGNVtoMIA
+#Output: 205 FlightsGNVtoMIA
 
 # Total flights delayed (>15min)
 awk '$13 == 1.00 || $16 == 1.00 {print $0}' FlightsGNVtoMIA |wc -l
-42
+#Output: 42
 
 # Total flights delayed due to Weather
 awk '$13 == 1.00 || $16 == 1.00 ' FlightsGNVtoMIA| awk '$24 > 0.00' |awk '{print $0}'|wc -l
-0
+#Output: 0
 
 

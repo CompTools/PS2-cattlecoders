@@ -4,15 +4,13 @@
 
 tr ',' '\t' < flights.May2017-Apr2018.csv | grep 'GNV' |awk '$13 == 1.00 || $16 == 1.00 {print $0}' > FlightsDelayedGNV
 
-# tr ',' '\t' -> to change the CSV file for TSV 
+# tr ',' '\t' -> tr translating or deleting characters: to change the CSV file for TSV 
 # grep 'GNV' -> to find the flights into or out Gainesville,FL
 # awk '$13 == 1.00 || $16 == 1.00 {print $0}' -> to find in columns DEP_DEL15 ($13) and ARR_DEL15 flights delayed more than 15 minutes
-
 
 wc -l FlightsDelayedGNV
 # wc -l to count the number of flights that were delayed more than 15 minutes into or out of Gainesville, FL (airport code GNV) during the timeframe covered by the dataset
 
-1009 FlightsDelayedGNV
-
-#ANSWER: There are 1009 flights delayed more then 15 minutes in or out of Gainesville, FL.
+#Output: 1009 FlightsDelayedGNV
+#Answer: There are 1009 flights delayed more then 15 minutes in or out of Gainesville, FL.
 
